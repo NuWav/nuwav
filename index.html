@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuwav — Are You In?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:#080808;color:#F0F0F0;min-height:100vh;overflow-x:hidden}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;border-bottom:1px solid #1A1A1A;position:sticky;top:0;background:#080808;z-index:100}
+  .logo{font-size:22px;font-weight:700;color:#F0F0F0;letter-spacing:3px}
+  .logo span{color:#E0002B}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .nav-count{font-size:12px;color:#444}
+  .nav-count strong{color:#E0002B}
+
+  .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:5rem 2rem 3rem}
+  .eyebrow{font-size:13px;font-weight:500;color:#E0002B;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem}
+  h1{font-size:62px;font-weight:700;line-height:1.05;margin-bottom:1.25rem;max-width:720px}
+  h1 span{color:#E0002B}
+  .sub{font-size:18px;color:#666;line-height:1.65;max-width:540px;margin:0 auto 1rem}
+  .sub2{font-size:15px;color:#444;max-width:480px;margin:0 auto 2.5rem;line-height:1.6}
+
+  .cta-group{display:flex;flex-direction:column;align-items:center;gap:.75rem;width:100%;max-width:480px;margin:0 auto 1rem}
+  .form-wrap{display:flex;gap:8px;width:100%}
+  .form-wrap input{flex:1;background:#111;border:1px solid #2A2A2A;border-radius:10px;padding:14px 18px;font-size:15px;color:#F0F0F0;outline:none;font-family:inherit}
+  .form-wrap input:focus{border-color:#E0002B}
+  .form-wrap input::placeholder{color:#444}
+  .btn{background:#E0002B;color:#fff;border:none;border-radius:10px;padding:14px 24px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background 0.15s}
+  .btn:hover{background:#B5001F}
+  .form-note{font-size:12px;color:#2A2A2A}
+
+  .success{display:none;flex-direction:column;align-items:center;gap:6px;padding:1.25rem 2rem;background:#0A0A0A;border:1px solid #3A0010;border-radius:12px;width:100%}
+  .success.show{display:flex}
+  .success-title{font-size:16px;font-weight:600;color:#E0002B}
+  .success-sub{font-size:13px;color:#666;text-align:center}
+
+  .social-proof{display:flex;flex-direction:column;align-items:center;gap:10px;margin:2.5rem 0 4rem}
+  .avatars{display:flex}
+  .av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;border:2px solid #080808;margin-left:-8px;flex-shrink:0}
+  .av:first-child{margin-left:0}
+  .av1{background:#1A0008;color:#E0002B}
+  .av2{background:#001A16;color:#00FFD1}
+  .av3{background:#0A0018;color:#C8B4FF}
+  .av4{background:#1A1008;color:#FAC775}
+  .av5{background:#1A0010;color:#FF88AA}
+  .av6{background:#1A1A1A;color:#888}
+  .proof-text{font-size:13px;color:#555}
+  .proof-text strong{color:#E0002B}
+
+  .who-section{padding:3rem 2rem;max-width:760px;margin:0 auto;width:100%}
+  .section-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#E0002B;margin-bottom:1rem;text-align:center}
+  .section-title{font-size:32px;font-weight:700;text-align:center;margin-bottom:.75rem;line-height:1.2}
+  .section-sub{font-size:15px;color:#555;text-align:center;max-width:480px;margin:0 auto 3rem;line-height:1.65}
+
+  .who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:3rem}
+  .who-card{background:#0F0F0F;border:1px solid #1A1A1A;border-radius:14px;padding:1.5rem;text-align:center;transition:border-color 0.15s;cursor:default}
+  .who-card:hover{border-color:#3A0010}
+  .who-emoji{font-size:28px;margin-bottom:.875rem}
+  .who-title{font-size:14px;font-weight:600;color:#F0F0F0;margin-bottom:.375rem}
+  .who-desc{font-size:12px;color:#555;line-height:1.6}
+
+  .divider{width:100%;height:1px;background:#1A1A1A;margin:0 auto;max-width:760px}
+
+  .features-section{padding:3rem 2rem;max-width:760px;margin:0 auto;width:100%}
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:2rem}
+  .feat-card{background:#0F0F0F;border:1px solid #1A1A1A;border-radius:14px;padding:1.25rem;transition:border-color 0.15s}
+  .feat-card:hover{border-color:#3A0010}
+  .feat-card.full{grid-column:span 2}
+  .feat-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#E0002B;margin-bottom:.5rem}
+  .feat-title{font-size:15px;font-weight:600;color:#F0F0F0;margin-bottom:.375rem}
+  .feat-desc{font-size:13px;color:#555;line-height:1.6}
+
+  .wave-preview{display:flex;align-items:center;gap:12px;background:#111;border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;border:1px solid #1A1A1A}
+  .wave-bars{display:flex;align-items:center;gap:3px;flex:1}
+  .wb{width:3px;border-radius:2px;background:#E0002B;animation:wave 1.2s ease-in-out infinite}
+  .wb:nth-child(1){height:16px;animation-delay:0s}
+  .wb:nth-child(2){height:32px;animation-delay:.1s}
+  .wb:nth-child(3){height:22px;animation-delay:.2s}
+  .wb:nth-child(4){height:44px;animation-delay:.3s}
+  .wb:nth-child(5){height:18px;animation-delay:.4s}
+  .wb:nth-child(6){height:36px;animation-delay:.5s}
+  .wb:nth-child(7){height:28px;animation-delay:.6s}
+  .wb:nth-child(8){height:42px;animation-delay:.7s}
+  .wb:nth-child(9){height:16px;animation-delay:.8s}
+  .wb:nth-child(10){height:30px;animation-delay:.9s}
+  .wb.dim{background:#2A2A2A;animation:none}
+  @keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.3)}}
+  .wave-info{font-size:12px;color:#555}
+  .wave-name{font-size:13px;font-weight:500;color:#F0F0F0;margin-bottom:2px}
+
+  .room-list{display:flex;flex-direction:column;gap:6px}
+  .room{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#0A0A0A;border:1px solid #1A1A1A}
+  .room.active{border-color:#3A0010;background:#120008}
+  .rdot{width:7px;height:7px;border-radius:50%;background:#2A2A2A;flex-shrink:0}
+  .rdot.live{background:#E0002B}
+  .rname{font-size:12px;color:#666}
+  .rname.active{color:#F0F0F0}
+  .rcount{font-size:11px;color:#333;margin-left:auto}
+  .rcount.active{color:#E0002B}
+
+  .genres{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:2rem auto;max-width:680px;padding:0 2rem}
+  .genre{font-size:12px;padding:5px 14px;border-radius:20px;background:#111;border:1px solid #1E1E1E;color:#555}
+
+  .bottom-cta{display:flex;flex-direction:column;align-items:center;padding:4rem 2rem;text-align:center;border-top:1px solid #1A1A1A}
+  .bottom-title{font-size:36px;font-weight:700;margin-bottom:.75rem;line-height:1.15}
+  .bottom-title span{color:#E0002B}
+  .bottom-sub{font-size:15px;color:#555;margin-bottom:2rem;max-width:400px;line-height:1.6}
+  .bottom-form{display:flex;gap:8px;max-width:440px;width:100%}
+  .bottom-form input{flex:1;background:#111;border:1px solid #2A2A2A;border-radius:10px;padding:13px 16px;font-size:14px;color:#F0F0F0;outline:none;font-family:inherit}
+  .bottom-form input:focus{border-color:#E0002B}
+  .bottom-form input::placeholder{color:#444}
+  .footer-text{font-size:12px;color:#222;margin-top:2.5rem}
+
+  @media(max-width:620px){
+    h1{font-size:36px}
+    .who-grid{grid-template-columns:1fr 1fr}
+    .feat-grid{grid-template-columns:1fr}
+    .feat-card.full{grid-column:span 1}
+    .form-wrap,.bottom-form{flex-direction:column}
+    nav{padding:1rem 1.25rem}
+    .hero{padding:3rem 1.25rem 2rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">NU<span>.</span>WAV</div>
+  <div class="nav-right">
+    <div class="nav-count"><strong id="navCount">1</strong> person signed up</div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">We are looking for interest</div>
+  <h1>Are you someone who<br>lives and breathes <span>music?</span></h1>
+  <p class="sub">Nuwav is for producers, artists, fans, and everyone in between who genuinely loves music.</p>
+  <p class="sub2">Share your music. Sell your kits. Find your people. One platform built around how creators actually work.</p>
+
+  <div class="cta-group">
+    <div class="form-wrap" id="formWrap1">
+      <input type="email" id="emailInput1" placeholder="your@email.com" />
+      <button class="btn" onclick="join('1')">I am in</button>
+    </div>
+    <div class="success" id="successMsg1">
+      <div class="success-title">Welcome to Nuwav.</div>
+      <div class="success-sub">You are one of the first. We will reach out when it is time. Tell a producer friend.</div>
+    </div>
+    <div class="form-note">No spam. Just updates when Nuwav is ready.</div>
+  </div>
+
+  <div class="social-proof">
+    <div class="avatars">
+      <div class="av av1">F</div>
+      <div class="av av2">J</div>
+      <div class="av av3">D</div>
+      <div class="av av4">S</div>
+      <div class="av av5">M</div>
+      <div class="av av6">+</div>
+    </div>
+    <div class="proof-text"><strong id="countNum">1</strong> person already signed up. Be next.</div>
+  </div>
+</div>
+
+<div class="who-section">
+  <div class="section-label">Who this is for</div>
+  <div class="section-title">If any of these sound like you,<br>Nuwav was made for you.</div>
+  <div class="section-sub">This is for everyone who lives and breathes music. Producers, artists, fans, collaborators. All of you.</div>
+
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-emoji">🎹</div>
+      <div class="who-title">Producers and beatmakers</div>
+      <div class="who-desc">You make beats, drum kits, and samples and want a real place to share and sell your work.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🎤</div>
+      <div class="who-title">Artists and vocalists</div>
+      <div class="who-desc">You make music and want to find producers, share your sound, and connect with the right people.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🎧</div>
+      <div class="who-title">Music lovers and fans</div>
+      <div class="who-desc">You want to discover underground artists and producers before anyone else does.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🤝</div>
+      <div class="who-title">Collaborators</div>
+      <div class="who-desc">You are looking for the right vocalist, engineer, or co-writer for your next project.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🛒</div>
+      <div class="who-title">Buyers and collectors</div>
+      <div class="who-desc">You buy beats, kits, and samples and want one clean place to find quality work from real creators.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-emoji">🌍</div>
+      <div class="who-title">Global creators</div>
+      <div class="who-desc">You make music anywhere in the world and want to connect with creators across every genre and scene.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="features-section">
+  <div class="section-label">What you will get</div>
+  <div class="section-title">Built different.<br>For creators who are different.</div>
+  <div class="section-sub" style="margin-bottom:2rem">Everything existing platforms should have built. Finally in one place.</div>
+
+  <div style="margin-bottom:1.25rem">
+    <div class="wave-preview">
+      <div style="display:flex;flex-direction:column;gap:4px;flex:1">
+        <div class="wave-name">Dark Trap Vol. 3</div>
+        <div class="wave-bars">
+          <div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div>
+          <div class="wb dim"></div><div class="wb dim"></div><div class="wb dim"></div><div class="wb dim"></div><div class="wb dim"></div>
+        </div>
+      </div>
+      <div class="wave-info">Choose how your<br>sound looks publicly</div>
+    </div>
+  </div>
+
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-tag">Your visual signature</div>
+      <div class="feat-title">Customizable soundwave</div>
+      <div class="feat-desc">Choose how your waveform looks when your music plays. Classic bars, circular pulse, liquid wave, or minimal line. Your sound has a visual identity that is uniquely yours.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-tag">Community rooms</div>
+      <div class="feat-title">Your people, your rooms</div>
+      <div class="feat-desc">
+        <div class="room-list">
+          <div class="room active"><div class="rdot live"></div><div class="rname active">Trap Producers</div><div class="rcount active">247 live</div></div>
+          <div class="room"><div class="rdot"></div><div class="rname">R&B Collabs</div><div class="rcount">84 online</div></div>
+          <div class="room"><div class="rdot"></div><div class="rname">Beat Feedback</div><div class="rcount">133 online</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-tag">Marketplace</div>
+      <div class="feat-title">Sell your work directly</div>
+      <div class="feat-desc">List your beats, drum kits, sample packs, presets, and vocal hooks. Built in payments. No middleman. You keep most of what you make.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-tag">Collab matching</div>
+      <div class="feat-title">AI finds your match</div>
+      <div class="feat-desc">Nuwav analyzes your sound and suggests producers and artists who complement your style. The right collaborator, found for you.</div>
+    </div>
+    <div class="feat-card full">
+      <div class="feat-tag">Live listening rooms</div>
+      <div class="feat-title">Drop your unreleased music live</div>
+      <div class="feat-desc">Create a room, invite your followers, and play your unreleased music together in real time. A private listening party built into the platform. No extra apps needed.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="genres">
+  <div class="genre">Trap</div>
+  <div class="genre">R&B</div>
+  <div class="genre">Lo-fi</div>
+  <div class="genre">Techno</div>
+  <div class="genre">UK Drill</div>
+  <div class="genre">Afrobeats</div>
+  <div class="genre">Hip-hop</div>
+  <div class="genre">Electronic</div>
+  <div class="genre">House</div>
+  <div class="genre">All genres</div>
+</div>
+
+<div class="bottom-cta">
+  <div class="bottom-title">Ready to be part<br>of <span>Nuwav?</span></div>
+  <div class="bottom-sub">Drop your email. We will reach out when it is time. No spam, no waiting forever. Just the real thing when it is ready.</div>
+  <div class="bottom-form" id="formWrap2">
+    <input type="email" id="emailInput2" placeholder="your@email.com" />
+    <button class="btn" onclick="join('2')">I am in</button>
+  </div>
+  <div class="success" id="successMsg2" style="max-width:440px;margin-top:1rem">
+    <div class="success-title">Welcome to Nuwav.</div>
+    <div class="success-sub">We will reach out when it is time. Tell a producer friend.</div>
+  </div>
+  <p class="footer-text">Built for the people who love music.</p>
+</div>
+
+<script>
+let count=1;
+function join(id){
+  const input=document.getElementById('emailInput'+id);
+  const email=input.value.trim();
+  if(!email||!email.includes('@')||!email.includes('.')){input.style.borderColor='#E0002B';input.focus();return;}
+  count++;
+  document.getElementById('countNum').textContent=count;
+  document.getElementById('navCount').textContent=count;
+  document.getElementById('formWrap'+id).style.display='none';
+  document.getElementById('successMsg'+id).classList.add('show');
+}
+document.getElementById('emailInput1').addEventListener('keydown',function(e){if(e.key==='Enter')join('1');});
+document.getElementById('emailInput2').addEventListener('keydown',function(e){if(e.key==='Enter')join('2');});
+</script>
+</body>
+</html>
