@@ -140,15 +140,8 @@
   <p class="sub2">Share your music. Sell your kits. Find your people. One platform built around how creators actually work.</p>
 
   <div class="cta-group">
-    <div class="form-wrap" id="formWrap1">
-      <input type="email" id="emailInput1" placeholder="your@email.com" />
-      <button class="btn" onclick="join('1')">I am in</button>
-    </div>
-    <div class="success" id="successMsg1">
-      <div class="success-title">Welcome to Nuwav.</div>
-      <div class="success-sub">You are one of the first. We will reach out when it is time. Tell a producer friend.</div>
-    </div>
-    <div class="form-note">No spam. Just updates when Nuwav is ready.</div>
+    <button class="btn" onclick="openTally()" style="padding:14px 36px;font-size:16px">I am in</button>
+    <div class="form-note">No spam. Just letting us know you are interested.</div>
   </div>
 
   <div class="social-proof">
@@ -276,31 +269,23 @@
 <div class="bottom-cta">
   <div class="bottom-title">Ready to be part<br>of <span>Nuwav?</span></div>
   <div class="bottom-sub">Drop your email. We will reach out when it is time. No spam, no waiting forever. Just the real thing when it is ready.</div>
-  <div class="bottom-form" id="formWrap2">
-    <input type="email" id="emailInput2" placeholder="your@email.com" />
-    <button class="btn" onclick="join('2')">I am in</button>
-  </div>
-  <div class="success" id="successMsg2" style="max-width:440px;margin-top:1rem">
-    <div class="success-title">Welcome to Nuwav.</div>
-    <div class="success-sub">We will reach out when it is time. Tell a producer friend.</div>
-  </div>
+  <button class="btn" onclick="openTally()" style="padding:14px 36px;font-size:16px">I am in</button>
   <p class="footer-text">Built for the people who love music.</p>
 </div>
 
+<script src="https://tally.so/widgets/embed.js"></script>
 <script>
-let count=1;
-function join(id){
-  const input=document.getElementById('emailInput'+id);
-  const email=input.value.trim();
-  if(!email||!email.includes('@')||!email.includes('.')){input.style.borderColor='#E0002B';input.focus();return;}
-  count++;
-  document.getElementById('countNum').textContent=count;
-  document.getElementById('navCount').textContent=count;
-  document.getElementById('formWrap'+id).style.display='none';
-  document.getElementById('successMsg'+id).classList.add('show');
+function openTally(){
+  Tally.openPopup('44G9Yb', {
+    width: 480,
+    hideTitle: false,
+    overlay: true,
+    onSubmit: function(){
+      document.getElementById('countNum').textContent = parseInt(document.getElementById('countNum').textContent) + 1;
+      document.getElementById('navCount').textContent = document.getElementById('navCount').textContent === '1' ? '2' : parseInt(document.getElementById('navCount').textContent) + 1;
+    }
+  });
 }
-document.getElementById('emailInput1').addEventListener('keydown',function(e){if(e.key==='Enter')join('1');});
-document.getElementById('emailInput2').addEventListener('keydown',function(e){if(e.key==='Enter')join('2');});
 </script>
 </body>
 </html>
