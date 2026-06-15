@@ -273,18 +273,9 @@
   <p class="footer-text">Built for the people who love music.</p>
 </div>
 
-<script src="https://tally.so/widgets/embed.js"></script>
 <script>
 function openTally(){
-  Tally.openPopup('44G9Yb', {
-    width: 480,
-    hideTitle: false,
-    overlay: true,
-    onSubmit: function(){
-      document.getElementById('countNum').textContent = parseInt(document.getElementById('countNum').textContent) + 1;
-      document.getElementById('navCount').textContent = document.getElementById('navCount').textContent === '1' ? '2' : parseInt(document.getElementById('navCount').textContent) + 1;
-    }
-  });
+  window.open('https://tally.so/r/44G9Yb', '_blank', 'width=540,height=600,scrollbars=yes,resizable=yes');
 }
 </script>
 </body>
